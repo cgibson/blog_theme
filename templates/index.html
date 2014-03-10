@@ -31,7 +31,7 @@ c{% extends "base.html" %}
                             {%- endif -%}
                         </span>
                         {% if DISQUS_SITENAME %}
-                        <span><i class="fa fa-comments"></i><a href="{{ helper.articleURL(article) }}#disqus_thread">Comments</a></span>
+                        <span><i class="fa fa-comments"></i><a href="{{ helper.articleURL(article) }}#disqus_thread" data-disqus-identifier="{{article.category}}/{{article.slug}}">Comments</a></span>
                         {% endif %}
                         <span><i class="fa fa-calendar"></i>{{ article.locale_date }}</span>
                         <span class="tags">{% if article.tags %}<i class="fa fa-tags"></i>{% for tag in article.tags %}<a href="{{ helper.tagURL(tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</span>
