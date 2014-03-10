@@ -1,0 +1,105 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% import 'helper.html' as helper with context %}
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ DEFAULT_LANG }}">
+  <head>
+    {% block head %}
+    <title>{% block title %}{% endblock title %} - {{ SITENAME }}</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Arimo:400,700|Inika" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/pastie.css" />
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/style.css" />
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+
+    <!--
+    <script type="application/dart" src="theme/helloworld.dart"></script>
+    <script src="theme/dart.js"></script>
+    -->
+    {% if FEED_RSS %}
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+    {% endif %}
+    {% endblock head %}
+
+    {% include 'analytics.html' %}
+
+  </head>
+
+  <body>
+
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="{{SITEURL}}/index.html" class="navbar-brand">{{ SITENAME|upper }}</a>
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse" id="navbar-main">
+        <ul class="nav navbar-nav">
+          {% for cat, nul in categories %}
+          <li {% if category == cat %}class="active"{% endif %}>
+            <a href="{{SITEURL}}/category/{{cat}}.html">
+                {% if cat == "code" %}
+                <i class="fa fa-code"></i>
+                {% elif cat == "reviews" %}
+                <i class="fa fa-star"></i>
+                {% elif cat == "blog" %}
+                <i class="fa fa-book"></i>
+                {% endif %}
+                {{cat|upper}}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{SITEURL}}/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i> FEED</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 45px"></div>
+
+  <div class="page-container">
+      {% block content %}
+      {% endblock %}
+  </div>
+
+    <div class="container">
+        <hr />
+        <div id="about">
+            <p>Proudly powered by <a href="http://docs.notmyidea.org/alexis/pelican/">pelican</a> and <a href="http://python.org">python</a>!</p>
+        </div><!-- /#about -->
+        <div id="sources">
+            All images are copyright their respective owners. This site's use and distribution of images or derivative
+            images falls under the protection of <a href="http://www.copyright.gov/fls/fl102.html">fair use</a>. If you
+            feel that abuse of these protections has occurred, please contact us at <a href="mailto:abuse@mrvoxel.com">abuse@mrvoxel.com</a>.
+        </div>
+    </div>
+
+    {% if DISQUS_SITENAME %}
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '{{ DISQUS_SITENAME }}'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    {% endif %}
+
+  </body>
+</html>

@@ -1,0 +1,80 @@
+{% macro primary(target_category) -%}
+  {% if category and target_category == category -%}
+    primary
+  {%- endif -%}
+{%- endmacro %}
+
+
+{% macro articleURL(article) -%}
+  {% if SLUG_REDIRECT -%}
+    {{ SITEURL }}/{{ article.category}}/{{ article.slug }}
+  {%- else -%}
+    {{ SITEURL }}/{{ article.url }}
+  {%- endif %}
+{%- endmacro %}
+
+
+{% macro categoryURL(category) -%}
+  {% if SLUG_REDIRECT -%}
+    {{ SITEURL }}/{{ category}}
+  {%- else -%}
+    {{ SITEURL }}/category/{{ category }}.html
+  {%- endif %}
+{%- endmacro %}
+
+
+{% macro tagURL(tag) -%}
+  {% if SLUG_REDIRECT -%}
+    {{ SITEURL }}/tags/{{ tag}}
+  {%- else -%}
+    {{ SITEURL }}/tags/{{ tag }}.html
+  {%- endif %}
+{%- endmacro %}
+
+
+{% macro paginateURL(page_name, number) -%}
+
+  {% if SLUG_REDIRECT -%}
+    {% if number == 1 %}
+        {% if page_name == "index" %}
+            {{ SITEURL }}
+        {% else %}
+            {{ SITEURL }}/{{ page_name|replace("category/","") }}
+        {% endif %}
+    {% else %}
+        {% if page_name == "index" %}
+            {{ SITEURL }}/?p={{ number }}
+        {% else %}
+            {{ SITEURL }}/{{ page_name|replace("category/","") }}?p={{ number }}
+        {% endif %}
+    {% endif %}
+  {%- else -%}
+    {% if number == 1 %}
+        {% if page_name == "index" %}
+            {{ SITEURL }}/index.html
+        {% else %}
+            {{ SITEURL }}/{{ page_name }}.html
+        {% endif %}
+    {% else %}
+        {% if page_name == "index" %}
+            {{ SITEURL }}/index{{ number }}.html
+        {% else %}
+            {{ SITEURL }}/{{ page_name }}{{ number }}.html
+        {% endif %}
+    {% endif %}
+  {% endif %}
+{%- endmacro %}
+
+
+{% macro rating(stars) -%}
+  {%- set stars = stars|float -%}
+  {%- for idx in range(1,6) -%}
+    {% if stars >= idx -%}
+      <i class="fa fa-star"></i>
+    {%- elif stars == (idx - 0.5) -%}
+      <i class="fa fa-star-half-o"></i>
+    {%- else -%}
+      <i class="fa fa-star-o"></i>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endmacro %}

@@ -1,0 +1,119 @@
+c{% extends "base.html" %}
+{% block title %}Blog{%endblock%}
+{% block content %}
+
+
+
+
+
+<div class="container">
+
+    <div class="row">
+    <div id="content" class="col-md-8">
+        <ul class="list-unstyled">
+        {% for article in articles_page.object_list %}
+            <li>
+                <div>
+                    <div class="header">
+                        <h2><a href="{{ helper.articleURL(article) }}">{{- article.title -}}</a></h2>
+                    </div>
+                    <p class="meta"><small>
+                        <span>
+                            {%- if article.category == "code" -%}
+                            <i class="fa fa-code" style="padding-left:0;"></i> In {{ article.category }}
+                            {%- elif article.category == "reviews" -%}
+                            <!--<i class="fa fa-star" style="padding-left:0;"></i>-->
+                            <span class="mini-rating">
+                                {{ helper.rating(article.rating) }}
+                            </span>
+                            {%- elif article.category == "blog" -%}
+                            <i class="fa fa-book" style="padding-left:0;"></i> In {{ article.category }}
+                            {%- endif -%}
+                        </span>
+                        {% if DISQUS_SITENAME %}
+                        <span><i class="fa fa-comments"></i>25 <a href="http://example.com/article2.html#disqus_thread">Comments</a></span>
+                        {% endif %}
+                        <span><i class="fa fa-calendar"></i>{{ article.locale_date }}</span>
+                        <span class="tags">{% if article.tags %}<i class="fa fa-tags"></i>{% for tag in article.tags %}<a href="{{ helper.tagURL(tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</span>
+                    </small></p>
+                    <div class="entry-content">
+                        {{ article.summary }}
+                    </div><!-- /.entry-content -->
+                    <div class="row">
+                        <div class="span4">
+                            {% if DISQUS_SITENAME %}
+                            <a class="btn btn-small disabled" href="{{ helper.articleURL(article) }}#disqus_thread"></a>
+                            {% endif %}
+                        </div>
+                        <div class="text-right">
+                            <a title="Permalink to {{ article.title|striptags}}" href="{{ helper.articleURL(article) }}" style="margin-right:15px;">Read More...</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li><hr /></li>
+        {% endfor %}
+        </ul><!-- /#posts-list -->
+
+        <center>
+            <div class="pagination pagination-centered">
+                <ul>
+                {% if articles_page.has_previous() and (articles_page.previous_page_number() != 1) %}
+                    <li><a href="{{ helper.paginateURL(page_name, 1) }}">1</a></li>
+                {% endif %}
+                {% if articles_page.previous_page_number() - 1 == 2 %}
+                    <li><a href="{{ helper.paginateURL(page_name, articles_page.previous_page_number())-1 }}">{{ articles_page.previous_page_number() - 1}}</a></li>
+                {% elif articles_page.previous_page_number() - 1 > 1 %}
+                    <li class="disabled"><a href="#">...</a></li>
+                {% endif %}
+                {% if articles_page.has_previous() %}
+                    <li><a href="{{ helper.paginateURL(page_name, articles_page.previous_page_number()) }}">{{ articles_page.previous_page_number() }}</a></li>
+                {% endif %}
+                    <li class="active"><a href="#">{{ articles_page.number }}</a></li>
+                {% if articles_page.has_next() %}
+                    <li><a href="{{ helper.paginateURL(page_name, articles_page.next_page_number()) }}">{{ articles_page.next_page_number() }}</a></li>
+                {% endif %}
+                {% if articles_paginator.num_pages - articles_page.next_page_number() == 2 %}
+                    <li><a href="{{ helper.paginateURL(page_name, articles_page.previous_page_number() + 1) }}">{{ articles_page.next_page_number() + 1}}</a></li>
+                {% elif articles_paginator.num_pages - articles_page.next_page_number() > 2 %}
+                    <li class="disabled"><a href="#">...</a></li>
+                {% endif %}
+                {% if articles_page.has_next() and (articles_page.next_page_number() != articles_paginator.num_pages) %}
+                    <li><a href="{{ helper.paginateURL(page_name, articles_paginator.num_pages) }}">{{ articles_paginator.num_pages }}</a></li>
+                {% endif %}
+                </ul>
+            </div>
+        </center>
+
+    </div><!-- /#content -->
+
+    <div class="col-md-4">
+        <h3><i class="fa fa-user"></i>ABOUT CHRIS</h3>
+            <img src="{{SITEURL}}/images/profile.jpg" style="float:right; padding:5px;">
+        <small>
+        <p>Chris Gibson a Technical Director at DreamWorks. He graduated with his Masters in Computer Science from Cal Poly, San Luis Obispo in 2011.</p>
+        <p>He is currently working on several projects in both the technical and creative realms. In his spare time, he likes to write fiction and tinker in web development.</p>
+        <div class="text-right"><a href="http://www.chrisgibson.us" class="text-right">More Info...</a></div>
+        </small>
+
+	    {% if tags %}
+        <hr/>
+        <h3><i class="fa fa-tags"></i>TAGS</h3>
+            <ul class="list-inline taglist">
+            {% for tag, articles in tags %}
+                <li><a href="{{ helper.tagURL(tag) }}/">{{ tag }}</a></li>
+            {% endfor %}
+            </ul>
+	    {% endif %}
+
+        <hr/>
+        <h3><i class="fa fa-twitter"></i>TWITTER</h3>
+        <a class="twitter-timeline" data-chrome="nofooter transparent noheader" href="https://twitter.com/mrvoxel" data-widget-id="435251310510616576">Tweets by @mrvoxel</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+    </div>
+    </div>
+</div>
+{% endblock content %}
