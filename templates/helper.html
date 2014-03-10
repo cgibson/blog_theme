@@ -25,9 +25,9 @@
 
 {% macro tagURL(tag) -%}
   {% if SLUG_REDIRECT -%}
-    {{ SITEURL }}/tags/{{ tag}}
+    {{ SITEURL }}/tag/{{ tag}}
   {%- else -%}
-    {{ SITEURL }}/tags/{{ tag }}.html
+    {{ SITEURL }}/tag/{{ tag }}.html
   {%- endif %}
 {%- endmacro %}
 
