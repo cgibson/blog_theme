@@ -102,7 +102,7 @@ c{% extends "base.html" %}
         <h3><i class="fa fa-tags"></i>TAGS</h3>
             <ul class="list-inline taglist">
             {% for tag, articles in tags %}
-                <li><a href="{{ helper.tagURL(tag) }}/">{{ tag }}</a></li>
+                <li><a href="{{ helper.tagURL(tag) }}">{{ tag }}</a></li>
             {% endfor %}
             </ul>
 	    {% endif %}
