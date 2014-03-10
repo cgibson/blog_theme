@@ -43,9 +43,9 @@
         {% endif %}
     {% else %}
         {% if page_name == "index" %}
-            {{ SITEURL }}/?p={{ number }}
+            {{ SITEURL }}/p/{{ number }}
         {% else %}
-            {{ SITEURL }}/{{ page_name|replace("category/","") }}?p={{ number }}
+            {{ SITEURL }}/{{ page_name|replace("category/","") }}/p/{{ number }}
         {% endif %}
     {% endif %}
   {%- else -%}
