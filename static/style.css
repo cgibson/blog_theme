@@ -97,6 +97,10 @@ h3 .fa {
     text-shadow: 2px 2px #333;
 }
 
+p {
+    margin: 0 0 15px;
+}
+
 /*
 .fa-comments {
     color: #1EB1EB;

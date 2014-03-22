@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if article.top_img %}
-    <div class="jumbotron img-title" style="background-image: url('{{article.top_img}}');" parallax=0.75>
+    <div class="jumbotron img-title" style="background-image: url('{{SITEURL}}/{{article.top_img}}');" parallax=0.75>
     <br><br><br><br>
     {% else %}
     <div class="jumbotron title">
@@ -24,7 +24,7 @@
     <p class="meta"><small>
         <span><i class="fa fa-calendar" style="padding-left:0;"></i>{{ article.locale_date }}</span>
         {% if DISQUS_SITENAME %}
-        <span><i class="fa fa-comments"></i>25 <a href="{{site_name}}#disqus_thread">Comments</a></span>
+        <span><i class="fa fa-comments"></i><a href="{{ helper.articleURL(article) }}#disqus_thread" data-disqus-identifier="{{article.category}}/{{article.slug}}">Comments</a></span>
         {% endif %}
         <span class="tags">{% if article.tags %}<i class="fa fa-tags" style="padding-left:14px"></i>{% for tag in article.tags %}<a href="/tag/{{ tag }}/">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</span>
     </small></p>
