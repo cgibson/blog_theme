@@ -98,7 +98,8 @@ h3 .fa {
 }
 
 p {
-    margin: 0 0 15px;
+    margin: 0 0 1.8em;
+    line-height: 1.8em;
 }
 
 /*
