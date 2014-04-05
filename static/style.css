@@ -102,6 +102,10 @@ p {
     line-height: 1.8em;
 }
 
+.article-list p{
+    line-height: 1.4em;
+}
+
 /*
 .fa-comments {
     color: #1EB1EB;
