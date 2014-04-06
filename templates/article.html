@@ -45,10 +45,9 @@
             </li>
             <li><i class="fa fa-calendar" style="padding-left:0; padding-right: 4px;"></i>{{ article.locale_date }}</li>
             <li>
+                <i class="fa fa-comments" style="padding-left:0; padding-right: 4px;"></i>
                 <a href="{% if DISQUS_SITENAME %}{{ helper.articleURL(article) }}#disqus_thread{% else %}#{% endif %}"
-                   >
-                    <i class="fa fa-comments" style="padding-left:0; padding-right: 4px;"></i><span data-disqus-identifier="{{article.category}}/{{article.slug}}">Comments</span>
-                </a>
+                   data-disqus-identifier="{{article.category}}/{{article.slug}}">Comments</a>
             </li>
         </ul>
     </div>
