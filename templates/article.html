@@ -23,14 +23,6 @@
 <div class="container">
 <div id="content">
 
-    {% if article.header %}
-    <div class="entry-content" style="width: 100%;">
-        <!--<h1>{{article.title}}</h1>-->
-        <h2>{{article.header}}</h2>
-    </div>
-    <div style="clear: both"></div>
-    {% endif %}
-
     <div class="entry-info meta">
         <p class="meta" style="margin: 0px;">
         <ul>
@@ -61,12 +53,20 @@
         </ul>
     </div>
 
+    {% if article.header %}
+    <div class="entry-content" style="width: 100%;">
+        <!--<h1>{{article.title}}</h1>-->
+        <h2>{{article.header}}</h2>
+    </div>
+    <!--<div style="clear: both"></div>-->
+    {% endif %}
+
     <div class="entry-content">
         {{ article.content }}
 
-        <span class="tags">
+        <span class="tags meta">
             {% if article.tags %}
-                <i class="fa fa-tags" style="padding-left:14px"></i>
+                <i class="fa fa-tags" style="padding-left:0px"></i>
                 {% for tag in article.tags %}
                     <a href="/tag/{{ tag }}/">{{ tag }}</a>
                     {% if not loop.last %}, {% endif %}

@@ -107,24 +107,28 @@ p {
     line-height: 1.4em;
 }
 
-.cat-icon {
-	border-radius: 50%;
-	width: 50px;
-	height: 50px;
-    color: #fff;
-    text-align: 50%;
-    font-size: 45px;
-    margin: 0px auto;
+@media (min-width: 900px) {
+    .entry-info {
+        max-width: 120px;
+        float: left;
+        margin-bottom: 15px;
+        margin-top: 21px;
+    }
 }
 
-.cat-reviews {
-    background-color: #268BD2;
-}
+@media (max-width: 899px) {
+    .entry-info {
+        width: 100%;
+        margin-bottom: 15px;
+    }
 
-.entry-info {
-    max-width: 120px;
-    float: left;
-    margin-bottom: 15px;
+    .entry-info li {
+        font-size: 9pt;
+        line-height: 16pt;
+        display: inline;
+        padding-right: 10px;
+    }
+
 }
 
 .entry-info ul {
