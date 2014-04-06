@@ -9,28 +9,71 @@
     <div class="jumbotron title">
     {% endif %}
         <div class="container">
+          <!--
           {% if article.rating %}
           <div class="rating">
               {{ helper.rating(article.rating) }}
           </div>
           {% endif %}
+          -->
           <h1>{{article.title}}</h1>
-          <p class="lead" style="color: #dde; font-weight: 100">{{article.header}}</p>
         </div>
     </div>
 
 <div class="container">
 <div id="content">
-    <p class="meta"><small>
-        <span><i class="fa fa-calendar" style="padding-left:0;"></i>{{ article.locale_date }}</span>
-        {% if DISQUS_SITENAME %}
-        <span><i class="fa fa-comments"></i><a href="{{ helper.articleURL(article) }}#disqus_thread" data-disqus-identifier="{{article.category}}/{{article.slug}}">Comments</a></span>
-        {% endif %}
-        <span class="tags">{% if article.tags %}<i class="fa fa-tags" style="padding-left:14px"></i>{% for tag in article.tags %}<a href="/tag/{{ tag }}/">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</span>
-    </small></p>
+
+    {% if article.header %}
+    <div class="entry-content" style="width: 100%;">
+        <!--<h1>{{article.title}}</h1>-->
+        <h2>{{article.header}}</h2>
+    </div>
+    <div style="clear: both"></div>
+    {% endif %}
+
+    <div class="entry-info meta">
+        <p class="meta" style="margin: 0px;">
+        <ul>
+            <li>
+            <b>
+                {%- if article.category == "code" -%}
+                <i class="fa fa-code" style="padding-left:0"></i> In {{ article.category }}
+                {%- elif article.category == "reviews" -%}
+                <!--<i class="fa fa-star" style="padding-left:0;"></i>-->
+                <!---->
+                <span class="mini-rating" style="font-size: 14pt;">
+                    {{ helper.rating(article.rating) }}
+                </span>
+                <!---->
+                {%- elif article.category == "blog" -%}
+                <i class="fa fa-book" style="padding-left:0;"></i> In {{ article.category }}
+                {%- endif -%}
+
+            </b>
+            </li>
+            <li><i class="fa fa-calendar" style="padding-left:0; padding-right: 4px;"></i>{{ article.locale_date }}</li>
+            <li>
+                <a href="{% if DISQUS_SITENAME %}{{ helper.articleURL(article) }}#disqus_thread{% else %}#{% endif %}"
+                   data-disqus-identifier="{{article.category}}/{{article.slug}}">
+                    <i class="fa fa-comments" style="padding-left:0; padding-right: 4px;"></i>Comments
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <div class="entry-content">
         {{ article.content }}
+
+        <span class="tags">
+            {% if article.tags %}
+                <i class="fa fa-tags" style="padding-left:14px"></i>
+                {% for tag in article.tags %}
+                    <a href="/tag/{{ tag }}/">{{ tag }}</a>
+                    {% if not loop.last %}, {% endif %}
+                {% endfor %}
+            {% endif %}
+        </span>
+
         </div><!-- /.entry-content -->
         {% if DISQUS_SITENAME %}
         <div id="disqus_thread"></div>

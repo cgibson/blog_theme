@@ -36,7 +36,7 @@ c{% extends "base.html" %}
                         <span><i class="fa fa-calendar"></i>{{ article.locale_date }}</span>
                         <span class="tags">{% if article.tags %}<i class="fa fa-tags"></i>{% for tag in article.tags %}<a href="{{ helper.tagURL(tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</span>
                     </small></p>
-                    <div class="entry-content">
+                    <div>
                         {{ article.summary }}
                     </div><!-- /.entry-content -->
                     <div class="text-right">

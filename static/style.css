@@ -100,12 +100,91 @@ h3 .fa {
 p {
     margin: 0 0 1.8em;
     line-height: 1.8em;
+    text-align: justify;
 }
 
 .article-list p{
     line-height: 1.4em;
 }
 
+.cat-icon {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+    color: #fff;
+    text-align: 50%;
+    font-size: 45px;
+    margin: 0px auto;
+}
+
+.cat-reviews {
+    background-color: #268BD2;
+}
+
+.entry-info {
+    max-width: 120px;
+    float: left;
+    margin-bottom: 15px;
+}
+
+.entry-info ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.entry-info li {
+    font-size: 9pt;
+    line-height: 16pt;
+}
+
+.entry-content {
+    max-width: 720px;
+    float: right;
+    text-align: left;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    height: 100px;
+    position: absolute;
+    z-index: -20;
+    width: 100%;
+    font-weight: 300;
+    font-size: 10pt;
+    clear: both;
+}
+
+.footer-fixed {
+    width: 900px;
+    position: fixed;
+    height: 80px;
+    z-index: -15;
+    margin: 0 auto;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+footer a{
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px #fff dotted;
+}
+footer a:hover{
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px #fff solid;
+}
+
+body {
+    z-index: 10;
+}
+
+.page-btm {
+    clear: both;
+    height: 40px;
+}
 /*
 .fa-comments {
     color: #1EB1EB;
