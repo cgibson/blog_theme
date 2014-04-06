@@ -160,7 +160,6 @@ footer {
 }
 
 .footer-fixed {
-    width: 900px;
     position: fixed;
     height: 80px;
     z-index: -15;
