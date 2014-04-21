@@ -85,7 +85,7 @@ h3 .fa {
     color:#ffffff;
 }
 
-.jumbotron.title h1 {
+.jumbotron.title h1.shadow {
     text-shadow: 2px 2px #003D8C;
 }
 
